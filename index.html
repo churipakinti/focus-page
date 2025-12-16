@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Focus Blocker</title>
+  <title>Focus</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
   <style>
@@ -18,121 +18,151 @@
     }
 
     body {
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 35%),
+                  radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.05), transparent 30%),
+                  linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04), transparent 30%),
-                  radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.03), transparent 22%),
-                  linear-gradient(145deg, #070a0f 0%, #0f141b 50%, #0b1118 100%);
-      color: #d9dee7;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #e7f3ff;
+      font-family: 'Inter', sans-serif;
       text-align: center;
-      padding: 28px;
-      letter-spacing: 0.01em;
+      padding: 24px;
     }
 
     main {
-      width: min(720px, 100%);
-      position: relative;
+      max-width: 720px;
+      width: 100%;
     }
 
-    .panel {
-      padding: clamp(48px, 5vw, 64px) clamp(32px, 5vw, 56px);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      background: rgba(10, 14, 20, 0.85);
-      backdrop-filter: blur(4px);
-      border-radius: 18px;
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 48px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     h1 {
-      font-size: clamp(2.3rem, 5vw, 3.4rem);
-      font-weight: 600;
-      color: #e6ebf2;
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      letter-spacing: 0.08em;
+      animation: pulse 3s infinite;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.14);
       line-height: 1.1;
-      margin-bottom: 14px;
     }
 
-    .subtext {
-      font-size: clamp(1.02rem, 2.4vw, 1.18rem);
-      color: #9aa3b0;
-      line-height: 1.4;
+    p {
+      margin-top: 16px;
+      font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+      color: #d6e7ff;
+      line-height: 1.6;
     }
 
-    .break-button {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      padding: 9px 14px;
-      background: transparent;
-      color: #7e8694;
-      border: 1px solid #242b35;
-      border-radius: 12px;
-      font-size: 0.95rem;
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      appearance: none;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
       cursor: pointer;
-      opacity: 0.65;
-      transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+      color: #0f2027;
+      background: linear-gradient(135deg, #8ef1c7, #4ad1ff);
+      box-shadow: 0 10px 25px rgba(74, 209, 255, 0.35);
+      transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
     }
 
-    .break-button:hover,
-    .break-button:focus-visible {
-      color: #a2aab7;
-      border-color: #313a46;
-      opacity: 0.8;
-      outline: none;
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(74, 209, 255, 0.45);
+      filter: brightness(1.02);
     }
 
-    .break-button:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      border-color: #1b1f27;
-      color: #6c7480;
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #e7f3ff;
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 18px;
+    .button.secondary:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
+      100% { opacity: 0.85; transform: scale(1); }
+    }
+
+    .affirmations {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      color: #c7ddf7;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 26px;
       }
 
-      .panel {
-        padding: clamp(42px, 7vw, 52px) clamp(24px, 6vw, 40px);
+      h1 {
+        letter-spacing: 0.04em;
       }
 
-      .break-button {
-        bottom: 16px;
-        right: 16px;
+      .actions {
+        gap: 10px;
       }
     }
   </style>
 </head>
 <body>
   <main>
-    <section class="panel" aria-label="Focus blocker">
-      <h1>Pause. Return to what you were doing.</h1>
-      <p class="subtext">This page blocks distractions so you can stay with your current task.</p>
+    <section class="card" aria-label="Focus prompt">
+      <h1>🍃<br>
+      Stay focused, be present.</h1>
+      <p>Take a deep breath, soften your gaze, and give your next task your full attention. A few calm minutes go a long way.</p>
+      <div class="actions">
+        <button class="button" type="button">Start a 5-minute focus</button>
+        <button class="button secondary" type="button">Set a gentle reminder</button>
+      </div>
+      <div class="affirmations" aria-hidden="true">
+        <span class="pill">Breathe in. Breathe out.</span>
+        <span class="pill">Single-task > multitask</span>
+        <span class="pill">Progress, not perfection</span>
+      </div>
     </section>
   </main>
-
-  <button class="break-button" type="button" disabled aria-live="polite">Take a conscious break</button>
-
-  <script>
-    const breakButton = document.querySelector('.break-button');
-    const enableDelayMs = 2800;
-
-    setTimeout(() => {
-      breakButton.disabled = false;
-      breakButton.setAttribute('aria-label', 'Take a conscious break (enabled)');
-    }, enableDelayMs);
-
-    breakButton.addEventListener('click', () => {
-      if (!breakButton.disabled) {
-        const confirmed = window.confirm('Confirm you want to take a conscious break?');
-        if (!confirmed) return;
-        breakButton.textContent = 'Break acknowledged';
-        breakButton.disabled = true;
-      }
-    });
-  </script>
 </body>
 </html>
