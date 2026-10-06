@@ -35,49 +35,67 @@
     }
 
     main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(1.75rem, 5vh, 2.75rem);
-      width: 100%;
-      max-width: 42rem;
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(100%, 46rem, 85vh);
+      width: min(100%, 46rem, 85dvh);
+      aspect-ratio: 1;
+      isolation: isolate;
     }
 
     .leaf {
-      width: clamp(2.5rem, 6vw, 3rem);
-      height: auto;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       color: #98b9a7;
-      opacity: 0.85;
-      animation: breathe 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-size: clamp(1.5rem, 5.8vw, 3.5rem);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.35;
       letter-spacing: -0.035em;
     }
 
     h1 span { display: block; }
 
-    @keyframes breathe {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 0.95; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .leaf { animation: none; }
-    }
   </style>
 </head>
 <body>
   <main>
-    <svg class="leaf" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <path d="M39 8C26 8 12 12 12 25c0 7 5 11 11 11C36 36 39 21 39 8Z"
-        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9 40 29 20M17 32v-9M23 26h9"
-        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <svg class="leaf" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+      <defs>
+        <radialGradient id="quiet-center">
+          <stop offset="0.55" stop-color="black"/>
+          <stop offset="1" stop-color="white"/>
+        </radialGradient>
+        <mask id="space-for-words">
+          <rect width="600" height="600" fill="white"/>
+          <ellipse cx="300" cy="300" rx="245" ry="108" fill="url(#quiet-center)"/>
+        </mask>
+      </defs>
+      <path d="M492 65C325 62 126 129 112 316C103 435 171 489 275 474C439 450 483 231 492 65Z"
+        fill="currentColor" fill-opacity=".025"
+        stroke="currentColor" stroke-opacity=".3" stroke-width="1.4"/>
+      <g mask="url(#space-for-words)" stroke="currentColor"
+        stroke-width="1.2" stroke-linecap="round">
+        <path d="M82 524C189 421 331 272 492 65" stroke-opacity=".4"/>
+        <g stroke-opacity=".22">
+          <path d="M172 432Q142 362 147 284"/>
+          <path d="M226 374Q191 278 207 185"/>
+          <path d="M287 304Q262 222 278 132"/>
+          <path d="M353 223Q341 163 366 95"/>
+          <path d="M172 432Q270 451 341 415"/>
+          <path d="M226 374Q335 389 409 333"/>
+          <path d="M287 304Q387 308 448 248"/>
+          <path d="M353 223Q420 216 473 166"/>
+        </g>
+      </g>
     </svg>
     <h1><span>Stay focused,</span><span>be present.</span></h1>
   </main>
