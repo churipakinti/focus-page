@@ -17,7 +17,7 @@
       display: grid;
       place-items: center;
       padding: 2rem 1.5rem;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(125deg, #051b23 0%, #143944 50%, #2d687b 100%);
       color: #f1f5f3;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       text-align: center;
@@ -27,12 +27,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(1.5rem, 3vw, 2rem);
+      gap: clamp(1.25rem, 1.55vw, 1.625rem);
       width: 100%;
     }
     .leaf {
       display: block;
-      width: clamp(4rem, 7vw, 5.5rem);
+      width: clamp(4.5rem, 6.1vw, 6.375rem);
       height: auto;
       flex: none;
       transform-origin: 50% 85%;
@@ -40,7 +40,7 @@
     }
     h1 {
       margin: 0;
-      font-size: clamp(1.65rem, 3.4vw, 3rem);
+      font-size: clamp(1.65rem, 2.87vw, 3rem);
       font-weight: 500;
       line-height: 1.35;
       letter-spacing: -0.025em;
@@ -57,29 +57,19 @@
 </head>
 <body>
   <main>
-    <svg class="leaf" viewBox="0 0 100 110" fill="none" aria-hidden="true" focusable="false">
+    <!-- Original botanical artwork from the approved mockup.
+         The viewBox isolates the sprig; the filter removes its blue backdrop. -->
+    <svg class="leaf" viewBox="784 380 106 106" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="right-leaf" x1="48" y1="67" x2="88" y2="9" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#56854e"/>
-          <stop offset=".52" stop-color="#92bd69"/>
-          <stop offset="1" stop-color="#c6df97"/>
-        </linearGradient>
-        <linearGradient id="left-leaf" x1="44" y1="75" x2="13" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#4f794a"/>
-          <stop offset=".6" stop-color="#8fb968"/>
-          <stop offset="1" stop-color="#bbd68a"/>
-        </linearGradient>
+        <filter id="remove-blue" color-interpolation-filters="sRGB">
+          <feColorMatrix type="matrix" values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 8 -8 0 -0.08"/>
+        </filter>
       </defs>
-      <path d="M49 101C48 80 57 56 72 35" stroke="#7e9f60" stroke-width="2.7" stroke-linecap="round"/>
-      <path d="M51 83C45 66 32 53 23 46" stroke="#7e9f60" stroke-width="2.3" stroke-linecap="round"/>
-      <path d="M54 69C43 46 63 25 89 9C87 35 83 62 54 69Z" fill="url(#right-leaf)"/>
-      <path d="M44 77C22 71 15 53 10 33C31 40 51 52 44 77Z" fill="url(#left-leaf)"/>
-      <path d="M54 69C65 47 78 28 89 9" stroke="#d1e2ad" stroke-opacity=".5" stroke-width="1"/>
-      <path d="M44 77C35 60 22 45 10 33" stroke="#d1e2ad" stroke-opacity=".45" stroke-width=".9"/>
-      <g stroke="#d1e2ad" stroke-opacity=".23" stroke-width=".7" stroke-linecap="round">
-        <path d="M62 53 60 36M69 41 69 28M76 31 78 20M62 53 77 47M69 41 82 35"/>
-        <path d="M35 62 34 49M28 52 26 43M35 62 24 59"/>
-      </g>
+      <image href="assets/focus-reference.png" width="1672" height="941" filter="url(#remove-blue)"/>
     </svg>
     <h1>Stay focused, be present!</h1>
   </main>
