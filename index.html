@@ -43,8 +43,16 @@
       line-height: 1.35;
       letter-spacing: -0.025em;
       text-wrap: balance;
+      animation: text-breathe 9s ease-in-out infinite;
     }
 
+    @keyframes text-breathe {
+      0%, 100% { opacity: 0.85; }
+      45% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      h1 { animation: none; }
+    }
   </style>
 </head>
 <body>
