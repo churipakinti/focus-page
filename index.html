@@ -32,11 +32,9 @@
     }
     .leaf {
       display: block;
-      width: clamp(4.5rem, 6.1vw, 6.375rem);
+      width: clamp(5.5rem, 7.6vw, 8rem);
       height: auto;
       flex: none;
-      transform-origin: 50% 85%;
-      animation: breathe 9s ease-in-out infinite;
     }
     h1 {
       margin: 0;
@@ -46,31 +44,12 @@
       letter-spacing: -0.025em;
       text-wrap: balance;
     }
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      45% { transform: scale(1.04); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .leaf { animation: none; }
-    }
+
   </style>
 </head>
 <body>
   <main>
-    <!-- Original botanical artwork from the approved mockup.
-         The viewBox isolates the sprig; the filter removes its blue backdrop. -->
-    <svg class="leaf" viewBox="784 380 106 106" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="remove-blue" color-interpolation-filters="sRGB">
-          <feColorMatrix type="matrix" values="
-            1 0 0 0 0
-            0 1 0 0 0
-            0 0 1 0 0
-            0 8 -8 0 -0.08"/>
-        </filter>
-      </defs>
-      <image href="assets/focus-reference.png" width="1672" height="941" filter="url(#remove-blue)"/>
-    </svg>
+    <img class="leaf" src="assets/leaf-hires.png" width="1254" height="1254" alt="" decoding="async">
     <h1>Stay focused, be present!</h1>
   </main>
 </body>
