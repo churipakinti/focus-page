@@ -3,101 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1114">
+  <meta name="theme-color" content="#0f2027">
   <title>Focus</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
-
-    html {
-      background: #0b1114;
-      color-scheme: dark;
-    }
-
+    html { background: #0f2027; color-scheme: dark; }
     body {
       margin: 0;
       min-height: 100vh;
       min-height: 100dvh;
       display: grid;
       place-items: center;
-      padding: 2rem;
-      background: radial-gradient(
-        ellipse at 50% 40%,
-        #182d32 0%,
-        #101c20 45%,
-        #0b1114 100%
-      );
-      color: #e6edea;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #f1f5f3;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       text-align: center;
       -webkit-font-smoothing: antialiased;
     }
-
     main {
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: min(100%, 46rem, 85vh);
-      width: min(100%, 46rem, 85dvh);
-      aspect-ratio: 1;
-      isolation: isolate;
-    }
-
-    .leaf {
-      position: absolute;
-      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(1.5rem, 3vw, 2rem);
       width: 100%;
-      height: 100%;
-      color: #98b9a7;
-      pointer-events: none;
-      z-index: -1;
     }
-
+    .leaf {
+      display: block;
+      width: clamp(4rem, 7vw, 5.5rem);
+      height: auto;
+      flex: none;
+      transform-origin: 50% 85%;
+      animation: breathe 9s ease-in-out infinite;
+    }
     h1 {
       margin: 0;
-      font-size: clamp(1.5rem, 5.8vw, 3.5rem);
-      font-weight: 400;
+      font-size: clamp(1.65rem, 3.4vw, 3rem);
+      font-weight: 500;
       line-height: 1.35;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
     }
-
-    h1 span { display: block; }
-
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      45% { transform: scale(1.04); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .leaf { animation: none; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <svg class="leaf" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+    <svg class="leaf" viewBox="0 0 100 110" fill="none" aria-hidden="true" focusable="false">
       <defs>
-        <radialGradient id="quiet-center">
-          <stop offset="0.55" stop-color="black"/>
-          <stop offset="1" stop-color="white"/>
-        </radialGradient>
-        <mask id="space-for-words">
-          <rect width="600" height="600" fill="white"/>
-          <ellipse cx="300" cy="300" rx="245" ry="108" fill="url(#quiet-center)"/>
-        </mask>
+        <linearGradient id="right-leaf" x1="48" y1="67" x2="88" y2="9" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#56854e"/>
+          <stop offset=".52" stop-color="#92bd69"/>
+          <stop offset="1" stop-color="#c6df97"/>
+        </linearGradient>
+        <linearGradient id="left-leaf" x1="44" y1="75" x2="13" y2="34" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#4f794a"/>
+          <stop offset=".6" stop-color="#8fb968"/>
+          <stop offset="1" stop-color="#bbd68a"/>
+        </linearGradient>
       </defs>
-      <path d="M492 65C325 62 126 129 112 316C103 435 171 489 275 474C439 450 483 231 492 65Z"
-        fill="currentColor" fill-opacity=".025"
-        stroke="currentColor" stroke-opacity=".3" stroke-width="1.4"/>
-      <g mask="url(#space-for-words)" stroke="currentColor"
-        stroke-width="1.2" stroke-linecap="round">
-        <path d="M82 524C189 421 331 272 492 65" stroke-opacity=".4"/>
-        <g stroke-opacity=".22">
-          <path d="M172 432Q142 362 147 284"/>
-          <path d="M226 374Q191 278 207 185"/>
-          <path d="M287 304Q262 222 278 132"/>
-          <path d="M353 223Q341 163 366 95"/>
-          <path d="M172 432Q270 451 341 415"/>
-          <path d="M226 374Q335 389 409 333"/>
-          <path d="M287 304Q387 308 448 248"/>
-          <path d="M353 223Q420 216 473 166"/>
-        </g>
+      <path d="M49 101C48 80 57 56 72 35" stroke="#7e9f60" stroke-width="2.7" stroke-linecap="round"/>
+      <path d="M51 83C45 66 32 53 23 46" stroke="#7e9f60" stroke-width="2.3" stroke-linecap="round"/>
+      <path d="M54 69C43 46 63 25 89 9C87 35 83 62 54 69Z" fill="url(#right-leaf)"/>
+      <path d="M44 77C22 71 15 53 10 33C31 40 51 52 44 77Z" fill="url(#left-leaf)"/>
+      <path d="M54 69C65 47 78 28 89 9" stroke="#d1e2ad" stroke-opacity=".5" stroke-width="1"/>
+      <path d="M44 77C35 60 22 45 10 33" stroke="#d1e2ad" stroke-opacity=".45" stroke-width=".9"/>
+      <g stroke="#d1e2ad" stroke-opacity=".23" stroke-width=".7" stroke-linecap="round">
+        <path d="M62 53 60 36M69 41 69 28M76 31 78 20M62 53 77 47M69 41 82 35"/>
+        <path d="M35 62 34 49M28 52 26 43M35 62 24 59"/>
       </g>
     </svg>
-    <h1><span>Stay focused,</span><span>be present.</span></h1>
+    <h1>Stay focused, be present!</h1>
   </main>
 </body>
 </html>
